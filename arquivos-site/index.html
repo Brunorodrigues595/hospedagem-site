@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuuvem Clone - Loja de Jogos Digitais</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fa-solid fa-gamepad logo-icon"></i>
+        <span>nuuvem</span><small>.clone</small>
+      </a>
+
+      <div class="search-container">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Pesquisar por jogos, gêneros...">
+      </div>
+
+      <div class="nav-actions">
+        <button class="cart-btn" id="openCartBtn" title="Abrir Carrinho">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+        <div class="user-profile">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80" alt="Avatar">
+          <span>Bruno</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="main-container">
+
+    <!-- HERO / BANNER EM DESTAQUE -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <span class="badge-featured"><i class="fa-solid fa-fire"></i> Lançamento em Destaque</span>
+        <h1 class="hero-title">Grand Theft Auto VI</h1>
+        <p class="hero-description">Explore Vice City no maior mundo aberto já criado. Garanta sua pré-venda com desconto exclusivo e bônus de conteúdo digital.</p>
+        <div class="hero-pricing">
+          <span class="discount-badge">-10%</span>
+          <div class="price-box">
+            <span class="old-price">R$ 349,90</span>
+            <span class="current-price">R$ 314,91</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="heroBuyBtn">
+            <i class="fa-solid fa-bolt"></i> Comprar Pré-venda
+          </button>
+          <button class="btn btn-secondary" onclick="addToCart(1)">
+            <i class="fa-solid fa-cart-plus"></i> Carrinho
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BARRA DE CATEGORIAS -->
+    <section class="categories-bar" id="filterBar">
+      <button class="category-chip active" data-category="all"><i class="fa-solid fa-border-all"></i> Todos</button>
+      <button class="category-chip" data-category="acao"><i class="fa-solid fa-gun"></i> Ação</button>
+      <button class="category-chip" data-category="rpg"><i class="fa-solid fa-dragon"></i> RPG</button>
+      <button class="category-chip" data-category="aventura"><i class="fa-solid fa-compass"></i> Aventura</button>
+      <button class="category-chip" data-category="corrida"><i class="fa-solid fa-car"></i> Corrida</button>
+      <button class="category-chip" data-category="estrategia"><i class="fa-solid fa-chess"></i> Estratégia</button>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section class="catalog-section">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-tags"></i> Ofertas Imperdíveis</h2>
+        <span class="catalog-count" id="catalogCount">6 jogos encontrados</span>
+      </div>
+
+      <div class="games-grid" id="gamesGrid">
+        <!-- Jogos injetados via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <a href="#" class="logo footer-logo">
+          <i class="fa-solid fa-gamepad logo-icon"></i>
+          <span>nuuvem</span><small>.clone</small>
+        </a>
+        <p class="footer-desc">Sua loja digital de confiança para jogos de PC com ativação oficial e as melhores promoções do mercado.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#">Lançamentos</a></li>
+          <li><a href="#">Pré-vendas</a></li>
+          <li><a href="#">Ofertas da Semana</a></li>
+          <li><a href="#">Cupons e Descontos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Suporte</h4>
+        <ul>
+          <li><a href="#">Central de Ajuda</a></li>
+          <li><a href="#">Ativação de Chaves</a></li>
+          <li><a href="#">Termos de Uso</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Formas de Pagamento</h4>
+        <div class="payment-icons">
+          <i class="fa-brands fa-pix" title="Pix"></i>
+          <i class="fa-brands fa-cc-visa" title="Visa"></i>
+          <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+          <i class="fa-brands fa-paypal" title="PayPal"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nuuvem Clone. Todos os direitos reservados. Projeto educacional para desenvolvimento web.</p>
+    </div>
+  </footer>
+
+  <!-- CARRINHO LATERAL -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <div class="cart-title">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <h3>Seu Carrinho</h3>
+      </div>
+      <button class="close-btn" id="closeCartBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="cart-drawer-body" id="cartItems">
+      <!-- Itens do carrinho -->
+    </div>
+
+    <div class="cart-drawer-footer">
+      <div class="summary-line">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">R$ 0,00</span>
+      </div>
+      <div class="summary-line highlight">
+        <span>Total</span>
+        <span id="cartTotal">R$ 0,00</span>
+      </div>
+      <button class="btn btn-primary btn-block" id="checkoutBtn">
+        Finalizar Compra <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- NOTIFICAÇÃO TOAST -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMessage">Item adicionado ao carrinho!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
